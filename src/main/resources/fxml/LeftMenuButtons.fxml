@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LeftMenuButtonsController">
+   <children>
+      <ToggleButton mnemonicParsing="false" onAction="#openSignIn" prefHeight="50.0" prefWidth="150.0" text="Zaloguj się">
+         <toggleGroup>
+            <ToggleGroup fx:id="ToggleGroupMenu" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton mnemonicParsing="false" onAction="#openSingUp" prefHeight="50.0" prefWidth="150.0" text="Zarejestruj się " toggleGroup="$ToggleGroupMenu" />
+      <ToggleButton mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="ToggleButton1" toggleGroup="$ToggleGroupMenu" />
+      <ToggleButton mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="ToggleButton2" toggleGroup="$ToggleGroupMenu" />
+      <ToggleButton mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="ToggleButton3" toggleGroup="$ToggleGroupMenu" />
+      <ToggleButton mnemonicParsing="false" onAction="#openAboutApplication" prefHeight="50.0" prefWidth="150.0" text="O aplikacji " toggleGroup="$ToggleGroupMenu" />
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
