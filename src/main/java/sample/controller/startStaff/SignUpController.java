@@ -9,7 +9,9 @@ import sample.DatabaseHibernate.OperationDB;
 import sample.DatabaseHibernate.UserDB;
 import sample.dialogs.DialogsStaff;
 import sample.main.DateUtils;
+import sample.main.SendAttachmentInEmail;
 
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -110,16 +112,15 @@ public class SignUpController {
 
         //Dodawanie do bazy danych jesli walidacja przebiegla poprawnie
         if(successfulValidation.equals(true)) {
-            //nawiazanie polaczenia z baza danych
-           // databaseController = new DatabaseController();
-            OperationDB operationDB = new OperationDB("kodzikWeryfikacyjny1");
+            String activateCod = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 6);
+            OperationDB operationDB = new OperationDB(activateCod);
             boolean unigueNick = DatabaseController.insertUser(new UserDB(tfNickId.getText(), tfPasswordId.getText(), tfEmailId.getText(), tfNameId.getText(), tfSurnameId.getText(), DateUtils.asDate(dpDateOfBirthID.getValue()), false, false,operationDB));
             System.out.println(unigueNick);
                 if(unigueNick){
                     DialogsStaff.signUpSuccessfulDialog(); //wyswietlenie komunikatu
+                           //wysylanie emaila
+                    SendAttachmentInEmail.sendActivateKOD(activateCod,tfNickId.getText(),tfPasswordId.getText(),tfEmailId.getText());
                     this.cleaningTextField(); // czyszczenie formularza
-                                                //wysylanie emaila
-
                 }else{
                     lUniqueNickValidationId.setVisible(true);
                 }
