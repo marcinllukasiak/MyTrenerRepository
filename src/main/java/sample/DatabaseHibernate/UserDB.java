@@ -68,6 +68,16 @@ public class UserDB {
                 ", isAdministrator=" + isAdministrator +
                 '}';
     }
+    public String toStringUserInfo() {
+        return "nick='" + nick + "'\n" +
+                "password='" + password + "'\n" +
+                "email='" + email + "'\n" +
+                "name='" + name + "'\n" +
+                "surname='" + surname + "'\n" +
+                "dateOfBirth='" + dateOfBirth + "'\n" +
+                "isActivated=" + isActivated + "\n" +
+                "isAdministrator=" + isAdministrator;
+    }
 
 
     //Setters and getters

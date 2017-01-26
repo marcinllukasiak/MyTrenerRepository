@@ -6,7 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.DatabaseHibernate.DatabaseController;
+import sample.DatabaseHibernate.OperationDB;
 import sample.DatabaseHibernate.UserDB;
+
+import java.util.Date;
 
 
 public class Main extends Application {
@@ -18,6 +21,10 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         DatabaseController databaseController = new DatabaseController();
+
+//        OperationDB operationDB = new OperationDB();
+//        UserDB userAdmin = new UserDB("admin","admin","marcinllukasiak@gmail.com","Marcin","Lukasiak",new Date(),true,true,operationDB);
+//        DatabaseController.insertUser(userAdmin);
 
     }
 

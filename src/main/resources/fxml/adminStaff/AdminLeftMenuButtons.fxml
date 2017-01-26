@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.adminStaff.AdminLeftMenuButtonsController">
+   <children>
+      <ToggleButton mnemonicParsing="false" onAction="#openChangePasswordScreen" prefHeight="50.0" prefWidth="150.0" text="Zmień hasło">
+         <toggleGroup>
+            <ToggleGroup fx:id="ToggleGroupMenu" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton mnemonicParsing="false" onAction="#openAdminEditScreen" prefHeight="50.0" prefWidth="150.0" text="Edycja Adminów" toggleGroup="$ToggleGroupMenu" />
+      <ToggleButton mnemonicParsing="false" onAction="#openUserEditScreen" prefHeight="50.0" prefWidth="150.0" text="Edycja Userów" toggleGroup="$ToggleGroupMenu" />
+      <ToggleButton mnemonicParsing="false" onAction="#openTremomgEditScreen" prefHeight="50.0" prefWidth="150.0" text="Edycja Treningów" toggleGroup="$ToggleGroupMenu" />
+      <ToggleButton mnemonicParsing="false" onAction="#logout" prefHeight="50.0" prefWidth="150.0" text="Wyloguj" toggleGroup="$ToggleGroupMenu" />
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

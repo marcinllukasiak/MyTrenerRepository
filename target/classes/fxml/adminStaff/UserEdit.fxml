@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.adminStaff.UserEditController">
+   <children>
+      <Label layoutX="106.0" layoutY="46.0" text="Lista użytkowników:" />
+      <ListView fx:id="lvUser" layoutX="106.0" layoutY="75.0" prefHeight="221.0" prefWidth="197.0" />
+      <TextField fx:id="tfNewValue" layoutX="345.0" layoutY="75.0" />
+      <Label layoutX="345.0" layoutY="46.0" text="Nowa Wartość" />
+      <Button layoutX="345.0" layoutY="149.0" maxWidth="186.0" mnemonicParsing="false" onAction="#changeNameAction" prefHeight="31.0" prefWidth="186.0" text="Zmień Imie" />
+      <Button layoutX="345.0" layoutY="185.0" maxWidth="186.0" mnemonicParsing="false" onAction="#changeSurnameAction" prefHeight="31.0" prefWidth="186.0" text="Zmień Nazwisko" />
+      <Button layoutX="345.0" layoutY="112.0" maxWidth="186.0" mnemonicParsing="false" onAction="#changePasswordAction" prefHeight="31.0" prefWidth="186.0" text="Zmień Hasło" />
+      <Button layoutX="345.0" layoutY="265.0" mnemonicParsing="false" onAction="#changeIsActivationAction" prefHeight="31.0" prefWidth="186.0" text="Zmień Aktywacje" />
+      <Button layoutX="345.0" layoutY="225.0" mnemonicParsing="false" onAction="#changeEmailAction" prefHeight="31.0" prefWidth="186.0" text="Zmień Email" />
+      <Label fx:id="labelTextInfo" layoutX="106.0" layoutY="330.0" prefHeight="21.0" prefWidth="234.0" text="Informacje o wybranym Userze:" />
+      <Label fx:id="labelInfoUser" layoutX="106.0" layoutY="358.0" text="Nie wybrano użytkowniaka">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelNotSelectUser" layoutX="205.0" layoutY="309.0" text="Nie wybrano użytkownika" textFill="#ff1818" visible="false" />
+      <Label fx:id="labelWrongNewValue" layoutX="66.0" layoutY="309.0" text="Nie wprowadzono Nowej Wartości lub wprowadzona jest niepoprawna" textFill="#ff1818" visible="false" />
+   </children>
+</Pane>

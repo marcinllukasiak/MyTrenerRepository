@@ -1,11 +1,17 @@
 package sample.controller.startStaff;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.DatabaseHibernate.DatabaseController;
 import sample.DatabaseHibernate.UserDB;
+import sample.controller.adminStaff.AdminLeftMenuButtonsController;
+import sample.dialogs.DialogsStaff;
+
+import java.io.IOException;
 
 /**
  * Created by Marcin on 2017-01-06.
@@ -36,7 +42,7 @@ public class SignInController {
 
     @FXML
     void recoveryPasswordAction() {
-
+        borderPaneMainController.setCenter("/fxml/startStaff/RecoveryPasswd.fxml");
 
     }
 
@@ -50,21 +56,40 @@ public class SignInController {
 
 
         try {
-            if((userDB.getPassword().equals(tfPasswordId.getText()) ) ){
+            if(userDB.getActivated()){ // sprawdzanie czy aktywowane
+                //sprawdzanie loginu i hasla
+                if((userDB.getPassword().equals(tfPasswordId.getText()) ) ){
 
-                System.out.println("Zalogowano");
+                    System.out.println("Zalogowano");
 
 
-                if(userDB.getAdministrator()){
-                    borderPaneMainController.setCenter("/fxml/adminStaff/onlineAdmin.fxml");
+                    if(userDB.getAdministrator()){
+                        borderPaneMainController.setCenter("/fxml/adminStaff/onlineAdmin.fxml");
+
+                        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/adminStaff/AdminLeftMenuButtons.fxml"));
+                        Parent parent = null;
+                        try {
+                            parent = loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        borderPaneMainController.setLeft(parent);
+                        AdminLeftMenuButtonsController adminLeftMenuButtonsController = loader.getController();
+                        adminLeftMenuButtonsController.setBorderPaneMainController(borderPaneMainController);
+                        adminLeftMenuButtonsController.setOnlineUser(userDB);
+                    }else{
+                        borderPaneMainController.setCenter("/fxml/userStaff/OnlineUser.fxml");
+                    }
+
+
                 }else{
-                    borderPaneMainController.setCenter("/fxml/userStaff/OnlineUser.fxml");
+                    labelFailedLoginId.setVisible(true);
                 }
-
-
-            }else{
-                labelFailedLoginId.setVisible(true);
+                // koniec sprawdzania L/H
+            }else{//jesli nie aktywowane
+                DialogsStaff.activateDialog(userDB);
             }
+
         } catch (Exception e) {
             labelFailedLoginId.setVisible(true);
         }
