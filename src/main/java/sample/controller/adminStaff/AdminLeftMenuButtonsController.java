@@ -59,7 +59,18 @@ public class AdminLeftMenuButtonsController {
 
     @FXML
     void openTremomgEditScreen() {
-
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/adminStaff/SingleTableTraining.fxml"));
+        Parent parent = null;
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        borderPaneMainController.setCenter(parent);
+        System.out.println("Ladowanie Trening Edit Screen");
+//        AdminEditController adminEditController = loader.getController();
+//        adminEditController.setOnlineUser(onlineUser);
+//        adminEditController.setBorderPaneMainController(borderPaneMainController);
     }
 
     @FXML

@@ -8,10 +8,6 @@ import org.hibernate.*;
 import org.hibernate.Query;
 import org.hibernate.cfg.Configuration;
 
-import javax.jws.soap.SOAPBinding;
-import javax.persistence.*;
-import java.util.List;
-
 /**
  * Created by Marcin on 2017-01-08.
  */
@@ -26,6 +22,7 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
     }
 
 
+//#########################   USER DB  -  START    ##########################
 
     public static boolean insertUser(UserDB userDB){
         boolean returne = false;
@@ -309,6 +306,167 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
     }
 
 
+    //#########################   USER DB  -  END    ##########################
+    //                      VV          VV          VV          VV
+    //#########################   TRENING SCHEME DB  -  START    ##########################
+
+    public static boolean insertTreningScheme(TreningSchemeDB treningSchemeDB){
+        boolean returne = false;
+
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            session.save(treningSchemeDB);
+
+            session.getTransaction().commit();
+            session.close();
+
+            returne = true;
+
+        }catch (Exception e ){
+            returne = false;
+        }
+
+        return returne;
+    }
+
+    public static TreningSchemeDB selectTreningScheme (long idTrening){
+        TreningSchemeDB treningSchemeDB = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT t FROM TreningSchemeDB t where t.idTrening = :idTrening");
+            query.setParameter("idTrening",idTrening);
+
+            treningSchemeDB = (TreningSchemeDB) query.uniqueResult();
+            System.out.println(treningSchemeDB);
+
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+        return treningSchemeDB;
+    }
+
+    public static TreningSchemeDB selectTreningScheme (String nameTreaining){
+        TreningSchemeDB treningSchemeDB = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT t FROM TreningSchemeDB t where t.nameTraining = :idNameTraining");
+            query.setParameter("idNameTraining",nameTreaining);
+
+            treningSchemeDB = (TreningSchemeDB) query.uniqueResult();
+            System.out.println(treningSchemeDB);
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+        return treningSchemeDB;
+    }
+
+    public static TreningSchemeDB selectTreningScheme (int leveOfAdvancement, int trainingDays){
+        TreningSchemeDB treningSchemeDB = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT t FROM TreningSchemeDB t " +
+                    "where t.leveOfAdvancement = :leveOfAdvancement AND t.trainingDays = :trainingDays");
+            query.setParameter("leveOfAdvancement",leveOfAdvancement);
+            query.setParameter("trainingDays",trainingDays);
+
+            treningSchemeDB = (TreningSchemeDB) query.uniqueResult();
+            System.out.println(treningSchemeDB);
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+        return treningSchemeDB;
+    }
+
+    public static boolean insertTreningSchemeHelper(TreiningSchemaDBHelper treningSchemeHelperDB){
+        boolean returne = false;
+
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            session.save(treningSchemeHelperDB);
+
+            session.getTransaction().commit();
+            session.close();
+
+            returne = true;
+
+        }catch (Exception e ){
+            returne = false;
+        }
+
+        return returne;
+    }
+
+    public static void updateTreningScheme (long idTrening , TreiningSchemaDBHelper treiningSchemaDBHelper, int day){
+        TreningSchemeDB treningSchemeDB = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT t FROM TreningSchemeDB t where t.idTrening = :idTrening");
+            query.setParameter("idTrening",idTrening);
+
+            treningSchemeDB = (TreningSchemeDB) query.uniqueResult();
+            System.out.println(treningSchemeDB);
+            session.save(treiningSchemaDBHelper);
+
+            switch (day) {
+                case 1:
+                    treningSchemeDB.getMondayWorkout().add(treiningSchemaDBHelper);
+                    break;
+                case 2:
+                    treningSchemeDB.getTuesdayWorkout().add(treiningSchemaDBHelper);
+                    break;
+                case 3:
+                    treningSchemeDB.getWednesdayWorkout().add(treiningSchemaDBHelper);
+                    break;
+                case 4:
+                    treningSchemeDB.getThursdayWorkout().add(treiningSchemaDBHelper);
+                    break;
+                case 5:
+                    treningSchemeDB.getFridayWorkout().add(treiningSchemaDBHelper);
+                    break;
+                case 6:
+                    treningSchemeDB.getSaturdayWorkout().add(treiningSchemaDBHelper);
+                    break;
+                case 7:
+                    treningSchemeDB.getSundayWorkout().add(treiningSchemaDBHelper);
+                    break;
+            }
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+
+    }
+
+    //#########################   TRENING SCHEME DB  -  END    ##########################
+
+
 
 //SHEMAT
 //    private static typ nazwa(){
@@ -326,6 +484,8 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
 //    }
 
 //    }
+
+
 
 
 }

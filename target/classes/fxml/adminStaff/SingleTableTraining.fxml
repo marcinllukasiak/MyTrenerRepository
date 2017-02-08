@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.adminStaff.SingleTableTraining">
+   <children>
+      <TableView fx:id="tabkeTraining" layoutX="97.0" layoutY="67.0" prefHeight="267.0" prefWidth="436.0">
+        <columns>
+          <TableColumn fx:id="nrColum" prefWidth="42.0" text="Nr" />
+          <TableColumn fx:id="nameWorkColumn" prefWidth="255.0" text="Nazwa ćwiczenia" />
+            <TableColumn fx:id="countSColumn" prefWidth="66.0" text="l.s." />
+            <TableColumn fx:id="countRColumn" minWidth="0.0" prefWidth="71.0" text="l.p." />
+        </columns>
+      </TableView>
+      <ToggleButton fx:id="tb1" layoutX="125.0" layoutY="23.0" mnemonicParsing="false" onAction="#mondayTableAction" prefWidth="50.0" text="Pn">
+         <toggleGroup>
+            <ToggleGroup fx:id="daysGroup" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton fx:id="tb2" layoutX="175.0" layoutY="23.0" mnemonicParsing="false" onAction="#tuesdayTableAction" prefWidth="50.0" text="Wt" toggleGroup="$daysGroup" />
+      <ToggleButton fx:id="tb3" layoutX="225.0" layoutY="23.0" mnemonicParsing="false" onAction="#wednesdayTableAction" prefWidth="50.0" text="Śr" toggleGroup="$daysGroup" />
+      <ToggleButton fx:id="tb4" layoutX="275.0" layoutY="23.0" mnemonicParsing="false" onAction="#thursdayTableAction" prefWidth="50.0" text="Cz" toggleGroup="$daysGroup" />
+      <ToggleButton fx:id="tb5" layoutX="325.0" layoutY="23.0" mnemonicParsing="false" onAction="#friadayTableAction" prefWidth="50.0" text="Pt" toggleGroup="$daysGroup" />
+      <ToggleButton fx:id="tb6" layoutX="375.0" layoutY="23.0" mnemonicParsing="false" onAction="#saturdayTableAction" prefWidth="50.0" text="So" toggleGroup="$daysGroup" />
+      <ToggleButton fx:id="tb7" layoutX="425.0" layoutY="23.0" mnemonicParsing="false" onAction="#sundayTableAction" prefWidth="50.0" text="N" toggleGroup="$daysGroup" />
+      <TextField fx:id="tfNameExercise" layoutX="153.0" layoutY="345.0" prefHeight="31.0" prefWidth="183.0" promptText="Nazwa ćwiczenia" />
+      <TextField fx:id="tfCountS" layoutX="343.0" layoutY="345.0" prefHeight="31.0" prefWidth="50.0" promptText="L.s." />
+      <TextField fx:id="tfCountR" layoutX="401.0" layoutY="345.0" prefHeight="31.0" prefWidth="50.0" promptText="L.p." />
+      <Button layoutX="461.0" layoutY="345.0" mnemonicParsing="false" onAction="#addExerciseAction" prefHeight="31.0" prefWidth="72.0" text="Dodaj" />
+      <TextField fx:id="tfNumber" layoutX="96.0" layoutY="345.0" prefHeight="31.0" prefWidth="50.0" promptText="Nr" />
+   </children>
+</Pane>
