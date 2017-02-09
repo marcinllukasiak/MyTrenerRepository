@@ -1,0 +1,21 @@
+ 4  |		   33	              |  6   |  6   |
+#Nr |             NAZWA               | l.s. | l.p. |
+=====================================================
+ Nr |              Nazwa              | l.s. | l.p. |
+=====================================================
+    |                                 |      |      | 
+    |                                 |      |      | 
+    |                                 |      |      | 
+    |                                 |      |      | 
+    |                                 |      |      | 
+    |                                 |      |      | 
+    |                                 |      |      | 
+    |                                 |      |      |
+=====================================================   
+opcja 2  kazde cwiczenie zapisywne jest w 3 rekordach w tablicy i zczytujemy wielokrotnosci do szablonu
+[0] Nazwa Cwiczenia
+[1] l.s.
+[2] l.p.
+(...)
+
+

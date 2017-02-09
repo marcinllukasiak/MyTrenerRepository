@@ -464,6 +464,58 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
 
     }
 
+
+
+    public static void updateTreningSchemeHelpre (long idTreningHelperA, int numberOfExecisesA,String nameOfExercisesA,int numberOfSeriesA,int numberOfRepetitionsA){
+        TreiningSchemaDBHelper treningSchemeDBhelper = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT t FROM TreiningSchemaDBHelper t " +
+                    "where t.idTreningHelper = :idTreningHelper ");
+            query.setParameter("idTreningHelper",idTreningHelperA);
+
+            treningSchemeDBhelper = (TreiningSchemaDBHelper) query.uniqueResult();
+            System.out.println(treningSchemeDBhelper);
+
+            treningSchemeDBhelper.setNumberOfExecises(numberOfExecisesA);
+            treningSchemeDBhelper.setNameOfExercises(nameOfExercisesA);
+            treningSchemeDBhelper.setNumberOfSeries(numberOfSeriesA);
+            treningSchemeDBhelper.setNumberOfRepetitions(numberOfRepetitionsA);
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+    }
+
+    public static void deleteTreningSchemeHelpre (long idTreningHelperA){
+        TreiningSchemaDBHelper treningSchemeDBhelper = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT t FROM TreiningSchemaDBHelper t " +
+                    "where t.idTreningHelper = :idTreningHelper ");
+            query.setParameter("idTreningHelper",idTreningHelperA);
+            treningSchemeDBhelper = (TreiningSchemaDBHelper) query.uniqueResult();
+            System.out.println(treningSchemeDBhelper);
+
+            session.delete(treningSchemeDBhelper);
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+
+    }
+
+
     //#########################   TRENING SCHEME DB  -  END    ##########################
 
 
