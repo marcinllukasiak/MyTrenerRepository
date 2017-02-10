@@ -20,8 +20,8 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         DatabaseController databaseController = new DatabaseController();
-        this.testValuesDB();
-       // this.testValuesDBTEST();
+        //this.testValuesDB();
+
 
 
     }

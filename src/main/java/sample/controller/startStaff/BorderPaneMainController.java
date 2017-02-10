@@ -54,6 +54,25 @@ public class BorderPaneMainController {
 
     }
 
+
+    public void setRight(Parent parent){
+
+        borderPaneMainId.setRight(parent);
+
+    }
+
+    public void setRight(String fxmlPath){
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(fxmlPath));
+        Parent parent = null;
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        borderPaneMainId.setRight(parent);
+
+    }
+
     public void setCenter(String fxmlPath){
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(fxmlPath));
         Parent parent = null;
@@ -85,6 +104,11 @@ public class BorderPaneMainController {
         borderPaneMainId.setRight(null);
         borderPaneMainId.setBottom(null);
         borderPaneMainId.setTop(null);
+
+    }
+
+    public void clearBorderPaneRight(){
+        borderPaneMainId.setRight(null);
 
     }
 

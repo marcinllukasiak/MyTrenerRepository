@@ -8,6 +8,9 @@ import org.hibernate.*;
 import org.hibernate.Query;
 import org.hibernate.cfg.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Marcin on 2017-01-08.
  */
@@ -512,6 +515,35 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
         }catch (Exception e ){
             System.err.println("Exception My: "+e);
         }
+
+    }
+
+
+    public static ObservableList<String> getAllTreningShemaName(){
+
+        Session session = sessionFactory.openSession();
+        ObservableList<String> trainingList = null;
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT ts.idTrening,ts.nameTraining,ts.leveOfAdvancement,ts.trainingDays FROM TreningSchemeDB ts");
+            List<Object[]> listResultO = query.list();
+            List<String> listResultS = new ArrayList<String>();
+            String treningSignature;
+
+            for (Object[] aRow : listResultO) {
+                treningSignature = String.valueOf(aRow[0])+" | " + (String) aRow[1]+" L:"+String.valueOf(aRow[2])+" D:"+String.valueOf(aRow[3]);
+                listResultS.add(treningSignature);
+            }
+            trainingList = FXCollections.observableArrayList(listResultS);
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println(e);
+        }
+        return trainingList;
 
     }
 

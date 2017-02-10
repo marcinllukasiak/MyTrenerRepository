@@ -19,6 +19,7 @@ public class AdminLeftMenuButtonsController {
 
     @FXML
     void openChangePasswordScreen() {
+        borderPaneMainController.clearBorderPaneRight();
         System.out.println(onlineUser);
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/adminStaff/ChangePassword.fxml"));
         Parent parent = null;
@@ -42,6 +43,7 @@ public class AdminLeftMenuButtonsController {
 
     @FXML
     void openAdminEditScreen() {
+        borderPaneMainController.clearBorderPaneRight();
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/adminStaff/AdminEdit.fxml"));
         Parent parent = null;
         try {
@@ -59,6 +61,7 @@ public class AdminLeftMenuButtonsController {
 
     @FXML
     void openTremomgEditScreen() {
+        borderPaneMainController.clearBorderPaneRight();
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/adminStaff/SingleTableTraining.fxml"));
         Parent parent = null;
         try {
@@ -71,10 +74,24 @@ public class AdminLeftMenuButtonsController {
 //        AdminEditController adminEditController = loader.getController();
 //        adminEditController.setOnlineUser(onlineUser);
 //        adminEditController.setBorderPaneMainController(borderPaneMainController);
+
+        // ladowanie prawej czesci
+        FXMLLoader loader2 = new FXMLLoader(this.getClass().getResource("/fxml/adminStaff/RightListTraining.fxml"));
+        Parent parent2 = null;
+        try {
+            parent2 = loader2.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        borderPaneMainController.setRight(parent2);
+        RightTrainingController rightTrainingController = loader2.getController();
+        rightTrainingController.setSingleTableTrainingController((SingleTableTrainingController) loader.getController());
+
     }
 
     @FXML
     void openUserEditScreen() {
+        borderPaneMainController.clearBorderPaneRight();
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/adminStaff/UserEdit.fxml"));
         Parent parent = null;
         try {

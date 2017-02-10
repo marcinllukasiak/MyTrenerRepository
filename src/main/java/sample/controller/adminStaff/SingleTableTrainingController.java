@@ -24,7 +24,8 @@ import java.util.*;
 /**
  * Created by Marcin on 2017-01-30.
  */
-public class SingleTableTraining {
+public class SingleTableTrainingController {
+    private String idTreningSchemaString;
 
     private TreningSchemeDB loadedTrainingDB;
     private TreiningSchemaDBHelper selectedRow;
@@ -123,9 +124,11 @@ public class SingleTableTraining {
     }
 
 
-    private void refreshTables(){
+    public void refreshTables(){
+
         //odswiezenie zaladowanego treningu
-        loadedTrainingDB = DatabaseController.selectTreningScheme(5,135); //testowy
+        loadedTrainingDB = DatabaseController.selectTreningScheme(Long.valueOf(idTreningSchemaString));
+       // System.out.println("refresh idTrening:"+loadedTrainingDB);
         //sprawdzenie dnia tygodnia
         if(tb1.isSelected()){
             this.mondayTableAction();
@@ -284,11 +287,11 @@ public class SingleTableTraining {
 
     @FXML
     void initialize() {
-        assert tabkeTraining != null : "fx:id=\"tabkeTraining\" was not injected: check your FXML file 'SingleTableTraining.fxml'.";
-        assert nrColum != null : "fx:id=\"nrColum\" was not injected: check your FXML file 'SingleTableTraining.fxml'.";
-        assert nameWorkColumn != null : "fx:id=\"nameWorkColumn\" was not injected: check your FXML file 'SingleTableTraining.fxml'.";
-        assert countSColumn != null : "fx:id=\"countSColumn\" was not injected: check your FXML file 'SingleTableTraining.fxml'.";
-        assert countRColumn != null : "fx:id=\"countRColumn\" was not injected: check your FXML file 'SingleTableTraining.fxml'.";
+        assert tabkeTraining != null : "fx:id=\"tabkeTraining\" was not injected: check your FXML file 'SingleTableTrainingController.fxml'.";
+        assert nrColum != null : "fx:id=\"nrColum\" was not injected: check your FXML file 'SingleTableTrainingController.fxml'.";
+        assert nameWorkColumn != null : "fx:id=\"nameWorkColumn\" was not injected: check your FXML file 'SingleTableTrainingController.fxml'.";
+        assert countSColumn != null : "fx:id=\"countSColumn\" was not injected: check your FXML file 'SingleTableTrainingController.fxml'.";
+        assert countRColumn != null : "fx:id=\"countRColumn\" was not injected: check your FXML file 'SingleTableTrainingController.fxml'.";
         // ladowanie przykladowego obiektu na którym bedziemy testowac
         loadedTrainingDB = DatabaseController.selectTreningScheme(5,135); //testowy
         System.out.println("loadedTrainingDB = " + loadedTrainingDB);
@@ -485,4 +488,13 @@ public class SingleTableTraining {
         return notEmptyField;
     }
 
+
+
+    public String getIdTreningSchema() {
+        return idTreningSchemaString;
+    }
+
+    public void setIdTreningSchema(String idTreningSchema) {
+        this.idTreningSchemaString = idTreningSchema;
+    }
 }
