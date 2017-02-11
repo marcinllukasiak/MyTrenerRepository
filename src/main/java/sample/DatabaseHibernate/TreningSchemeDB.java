@@ -8,6 +8,9 @@ import java.util.*;
  * Created by Marcin on 2017-01-26.
  */
 @Entity
+@Table(uniqueConstraints={
+        @UniqueConstraint(columnNames = {"nameTraining", "leveOfAdvancement","trainingDays","authorName"})
+})
 public class TreningSchemeDB {
     @Id
     @GeneratedValue

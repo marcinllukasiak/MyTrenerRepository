@@ -548,6 +548,107 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
     }
 
 
+    public static TreningSchemeDB deleteTreningScheme (long idTreningA){
+        TreningSchemeDB treningSchemeDB = null;
+        deleteTreningSchemeHelpreTS(idTreningA);
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT t FROM TreningSchemeDB t where t.idTrening = :idTrening");
+            query.setParameter("idTrening",idTreningA);
+
+            treningSchemeDB = (TreningSchemeDB) query.uniqueResult();
+            System.out.println(treningSchemeDB);
+
+            session.delete(treningSchemeDB);
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+        return treningSchemeDB;
+    }
+
+    private static void deleteTreningSchemeHelpreTS (long idTreningShemaA){
+        List<TreiningSchemaDBHelper> treiningSchemaDBHelperList = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT t.fridayWorkout FROM TreningSchemeDB t " +
+                    "where t.idTrening = :idTreningHelper ");
+            query.setParameter("idTreningHelper",idTreningShemaA);
+            treiningSchemaDBHelperList =query.list();
+
+            for (TreiningSchemaDBHelper tSH:treiningSchemaDBHelperList) {
+                session.delete(tSH);
+            }
+
+            query = session.createQuery("SELECT t.mondayWorkout FROM TreningSchemeDB t " +
+                    "where t.idTrening = :idTreningHelper ");
+            query.setParameter("idTreningHelper",idTreningShemaA);
+            treiningSchemaDBHelperList =query.list();
+
+            for (TreiningSchemaDBHelper tSH:treiningSchemaDBHelperList) {
+                session.delete(tSH);
+            }
+
+            query = session.createQuery("SELECT t.saturdayWorkout FROM TreningSchemeDB t " +
+                    "where t.idTrening = :idTreningHelper ");
+            query.setParameter("idTreningHelper",idTreningShemaA);
+            treiningSchemaDBHelperList =query.list();
+
+            for (TreiningSchemaDBHelper tSH:treiningSchemaDBHelperList) {
+                session.delete(tSH);
+            }
+            query = session.createQuery("SELECT t.sundayWorkout FROM TreningSchemeDB t " +
+                    "where t.idTrening = :idTreningHelper ");
+            query.setParameter("idTreningHelper",idTreningShemaA);
+            treiningSchemaDBHelperList =query.list();
+
+            for (TreiningSchemaDBHelper tSH:treiningSchemaDBHelperList) {
+                session.delete(tSH);
+            }
+
+            query = session.createQuery("SELECT t.thursdayWorkout FROM TreningSchemeDB t " +
+                    "where t.idTrening = :idTreningHelper ");
+            query.setParameter("idTreningHelper",idTreningShemaA);
+            treiningSchemaDBHelperList =query.list();
+
+            for (TreiningSchemaDBHelper tSH:treiningSchemaDBHelperList) {
+                session.delete(tSH);
+            }
+            query = session.createQuery("SELECT t.tuesdayWorkout FROM TreningSchemeDB t " +
+                    "where t.idTrening = :idTreningHelper ");
+            query.setParameter("idTreningHelper",idTreningShemaA);
+            treiningSchemaDBHelperList =query.list();
+
+            for (TreiningSchemaDBHelper tSH:treiningSchemaDBHelperList) {
+                session.delete(tSH);
+            }
+
+            query = session.createQuery("SELECT t.wednesdayWorkout FROM TreningSchemeDB t " +
+                    "where t.idTrening = :idTreningHelper ");
+            query.setParameter("idTreningHelper",idTreningShemaA);
+            treiningSchemaDBHelperList =query.list();
+
+            for (TreiningSchemaDBHelper tSH:treiningSchemaDBHelperList) {
+                session.delete(tSH);
+            }
+
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+
+    }
+
     //#########################   TRENING SCHEME DB  -  END    ##########################
 
 
