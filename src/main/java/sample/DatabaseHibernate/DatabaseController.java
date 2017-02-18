@@ -308,6 +308,26 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
         }
     }
 
+    public static void changeIsMale (String nickA, Boolean isMale){
+        UserDB userDB = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT u FROM UserDB u where u.nick = :nick");
+            query.setParameter("nick",nickA);
+
+            userDB = (UserDB) query.uniqueResult();
+            userDB.setMale(isMale);
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+    }
+
 
     //#########################   USER DB  -  END    ##########################
     //                      VV          VV          VV          VV
@@ -650,6 +670,43 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
     }
 
     //#########################   TRENING SCHEME DB  -  END    ##########################
+
+
+
+
+
+    //#########################   MAIN MESUREMENT DB  -  START    ##########################
+    public static void updateUserDB (long idUserDBA,UserDB updateUserDB){
+        UserDB userDB = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT u FROM UserDB u " +
+                    "where u.idUser = :idUserDB ");
+            query.setParameter("idUserDB",idUserDBA);
+
+            userDB = (UserDB) query.uniqueResult();
+            System.out.println(userDB);
+
+            userDB.setMale(updateUserDB.isMale());
+            userDB.getMainMeasurementDB().setBodyWeight(updateUserDB.getMainMeasurementDB().getBodyWeight());
+            userDB.getMainMeasurementDB().setSizeCm(updateUserDB.getMainMeasurementDB().getSizeCm());
+            userDB.getMainMeasurementDB().setCaloric(updateUserDB.getMainMeasurementDB().getCaloric());
+
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+    }
+
+
+
+    //#########################   MAIN MESUREMENT DB  -  END      ##########################
+
 
 
 

@@ -99,6 +99,34 @@ public class UserEditController {
     }
 
     @FXML
+    void changeSexAction() {
+        this.labelVisableoff();
+        if(lvUser.getSelectionModel().isEmpty()){
+            labelNotSelectUser.setVisible(true);
+            labelInfoUser.setVisible(false);
+            labelTextInfo.setVisible(false);
+        }else{
+            if(tfNewValue.getText().equals("")){
+                labelWrongNewValue.setVisible(true);
+            }else{ // jest wartosc
+                if( (tfNewValue.getText().equals("1")) || (tfNewValue.getText().toLowerCase().equals("true")) ){
+                    DatabaseController.changeIsMale(lvUser.getSelectionModel().getSelectedItem(),true);
+                    //odswiezenie wartosci
+                    labelInfoUser.setText(DatabaseController.selectUser(lvUser.getSelectionModel().getSelectedItem()).toStringUserInfo());
+                }else if((tfNewValue.getText().equals("0")) || (tfNewValue.getText().toLowerCase().equals("false"))){
+                    DatabaseController.changeIsMale(lvUser.getSelectionModel().getSelectedItem(),false);
+                    //odswiezenie wartosci
+                    labelInfoUser.setText(DatabaseController.selectUser(lvUser.getSelectionModel().getSelectedItem()).toStringUserInfo());
+                }else{
+                    // zła wartość
+                    labelWrongNewValue.setVisible(true);
+                }
+            }
+        }
+    }
+
+
+    @FXML
     void changeNameAction() {
         this.labelVisableoff();
         if(lvUser.getSelectionModel().isEmpty()){

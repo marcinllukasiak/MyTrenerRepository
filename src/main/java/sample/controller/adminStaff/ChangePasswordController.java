@@ -6,6 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import sample.DatabaseHibernate.DatabaseController;
 import sample.DatabaseHibernate.UserDB;
+import sample.controller.userStaff.UserLeftMenuButtonsController;
 import sample.dialogs.DialogsStaff;
 
 /**
@@ -14,6 +15,15 @@ import sample.dialogs.DialogsStaff;
 public class ChangePasswordController {
     private UserDB onlineUser;
     private AdminLeftMenuButtonsController adminLeftMenuButtonsController;
+    private UserLeftMenuButtonsController userLeftMenuButtonsController;
+
+    public UserLeftMenuButtonsController getUserLeftMenuButtonsController() {
+        return userLeftMenuButtonsController;
+    }
+
+    public void setUserLeftMenuButtonsController(UserLeftMenuButtonsController userLeftMenuButtonsController) {
+        this.userLeftMenuButtonsController = userLeftMenuButtonsController;
+    }
 
     public AdminLeftMenuButtonsController getAdminLeftMenuButtonsController() {
         return adminLeftMenuButtonsController;
@@ -69,7 +79,13 @@ public class ChangePasswordController {
             if(pfNewPassword2.getText().equals(pfNewPassword1.getText())){
                 //zmiana hasłą w bazie danych i odswiezenie usera - wyslanie go do Admin Left Button
                 onlineUser = DatabaseController.editPassword(onlineUser,pfNewPassword1.getText());
-                adminLeftMenuButtonsController.setOnlineUser(onlineUser);
+                try{
+                    adminLeftMenuButtonsController.setOnlineUser(onlineUser);
+                    userLeftMenuButtonsController.setOnlineUser(onlineUser);
+                }catch (Exception e){
+                    System.out.println("ChangePasswordAction" + e);
+                }
+
                 //Wyświetlenie komunikatu o poprawnej zmianie hasłą
                 DialogsStaff.changePasswordSucecessfulDialog();
                 //czyszczenie fieldów

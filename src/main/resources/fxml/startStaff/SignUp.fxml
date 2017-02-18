@@ -3,32 +3,42 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.startStaff.SignUpController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.startStaff.SignUpController">
    <children>
       <Label layoutX="265.0" layoutY="30.0" text="Sign Up" />
-      <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="124.0" layoutY="89.0" prefWidth="100.0" text="Nick:" />
-      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="126.0" prefWidth="100.0" text="Passwor:" />
-      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="165.0" prefWidth="100.0" text="Email:" />
-      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="202.0" prefWidth="100.0" text="Name:" />
-      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="239.0" prefWidth="100.0" text="Surname:" />
-      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="276.0" prefWidth="100.0" text="Date of birth:" />
-      <TextField fx:id="tfNickId" layoutX="241.0" layoutY="84.0" />
-      <TextField fx:id="tfPasswordId" layoutX="241.0" layoutY="121.0" />
-      <TextField fx:id="tfEmailId" layoutX="241.0" layoutY="160.0" />
-      <TextField fx:id="tfNameId" layoutX="241.0" layoutY="197.0" />
-      <TextField fx:id="tfSurnameId" layoutX="241.0" layoutY="234.0" />
-      <DatePicker fx:id="dpDateOfBirthID" layoutX="241.0" layoutY="271.0" />
-      <Button layoutX="241.0" layoutY="338.0" mnemonicParsing="false" onAction="#signUpAction" prefHeight="31.0" prefWidth="171.0" text="Register" />
-      <Label fx:id="lNickValidationId" layoutX="234.0" layoutY="308.0" text="Pole 'Nick' nie zostało podane" textFill="#ff1818" visible="false" />
-      <Label fx:id="lPasswordValidationId" layoutX="217.0" layoutY="308.0" text="Pole 'Password' nie zostało podane" textFill="#ff1818" visible="false" />
-      <Label fx:id="lEmailValidationId" layoutX="231.0" layoutY="308.0" text="Pole 'Email' nie zostało podane" textFill="#ff1818" visible="false" />
-      <Label fx:id="lNameValidationId" layoutX="210.0" layoutY="308.0" text="Pole 'Name' nie zostało podane" textFill="#ff1818" visible="false" />
-      <Label fx:id="lSurnameValidationId" layoutX="231.0" layoutY="308.0" text="Pole 'Surname' nie zostało podane" textFill="#ff1818" visible="false" />
-      <Label fx:id="lDataValidationId" layoutX="229.0" layoutY="308.0" text="Pole 'Date of birt' nie zostało podane" textFill="#ff1818" visible="false" />
-      <Label fx:id="lUniqueNickValidationId" layoutX="207.0" layoutY="308.0" text="Niestety podany Nick jest już używany" textFill="#ff1818" visible="false" />
-      <Label fx:id="lIncorrectEmailId" layoutX="224.0" layoutY="308.0" text="Podany Email jest niepoprawny" textFill="#ff1818" visible="false" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="124.0" layoutY="71.0" prefWidth="100.0" text="Nick:" />
+      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="108.0" prefWidth="100.0" text="Passwor:" />
+      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="147.0" prefWidth="100.0" text="Email:" />
+      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="184.0" prefWidth="100.0" text="Name:" />
+      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="221.0" prefWidth="100.0" text="Surname:" />
+      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="293.0" prefWidth="100.0" text="Date of birth:" />
+      <TextField fx:id="tfNickId" layoutX="241.0" layoutY="66.0" />
+      <TextField fx:id="tfPasswordId" layoutX="241.0" layoutY="103.0" />
+      <TextField fx:id="tfEmailId" layoutX="241.0" layoutY="142.0" />
+      <TextField fx:id="tfNameId" layoutX="241.0" layoutY="179.0" />
+      <TextField fx:id="tfSurnameId" layoutX="241.0" layoutY="216.0" />
+      <DatePicker fx:id="dpDateOfBirthID" layoutX="238.0" layoutY="288.0" />
+      <Button layoutX="241.0" layoutY="355.0" mnemonicParsing="false" onAction="#signUpAction" prefHeight="31.0" prefWidth="171.0" text="Register" />
+      <Label fx:id="lNickValidationId" layoutX="233.0" layoutY="329.0" text="Pole 'Nick' nie zostało podane" textFill="#ff1818" visible="false" />
+      <Label fx:id="lPasswordValidationId" layoutX="217.0" layoutY="329.0" text="Pole 'Password' nie zostało podane" textFill="#ff1818" visible="false" />
+      <Label fx:id="lEmailValidationId" layoutX="230.0" layoutY="329.0" text="Pole 'Email' nie zostało podane" textFill="#ff1818" visible="false" />
+      <Label fx:id="lNameValidationId" layoutX="212.0" layoutY="329.0" text="Pole 'Name' nie zostało podane" textFill="#ff1818" visible="false" />
+      <Label fx:id="lSurnameValidationId" layoutX="229.0" layoutY="329.0" text="Pole 'Surname' nie zostało podane" textFill="#ff1818" visible="false" />
+      <Label fx:id="lDataValidationId" layoutX="211.0" layoutY="329.0" text="Pole 'Date of birt' nie zostało podane" textFill="#ff1818" visible="false" />
+      <Label fx:id="lUniqueNickValidationId" layoutX="207.0" layoutY="329.0" text="Niestety podany Nick jest już używany" textFill="#ff1818" visible="false" />
+      <Label fx:id="lIncorrectEmailId" layoutX="230.0" layoutY="329.0" text="Podany Email jest niepoprawny" textFill="#ff1818" visible="false" />
+      <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="261.0" prefWidth="100.0" text="Sex:" />
+      <RadioButton fx:id="rbMale" layoutX="249.0" layoutY="261.0" mnemonicParsing="false" text="Male">
+         <toggleGroup>
+            <ToggleGroup fx:id="SexGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rbFemale" layoutX="347.0" layoutY="261.0" mnemonicParsing="false" text="Female" toggleGroup="$SexGroup" />
+      <Label fx:id="lSexValidationId" layoutX="241.0" layoutY="329.0" text="Pole ' Sex ' nie zostało podane" textFill="#ff1818" visible="false" />
    </children>
 </Pane>

@@ -20,7 +20,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
         DatabaseController databaseController = new DatabaseController();
-        this.testValuesDB();
+      //  this.testValuesDB();
 
 
 
@@ -101,8 +101,9 @@ public class Main extends Application {
                         testListSobota,
                         testListNiedziela));
 
-        DatabaseController.insertUser(new UserDB("admin","admin","marcinllukasiak@gmail.com","Marcin","Lukasiak",new Date(),true,true,new OperationDB()));
-        DatabaseController.insertUser(new UserDB("user1","user1","marcinllukasiak@gmail.com","user1Name","user1Surname",new Date(),true,false,new OperationDB()));
+        DatabaseController.insertUser(new UserDB(true,"admin","admin","marcinllukasiak@gmail.com","Marcin","Lukasiak",new Date(),true,true,new OperationDB(),new MainMeasurementDB()));
+        DatabaseController.insertUser(new UserDB(true,"user1","user1","marcinllukasiak@gmail.com","user1Name","user1Surname",new Date(),true,false,new OperationDB(),new MainMeasurementDB()));
+        DatabaseController.insertUser(new UserDB(false,"user2","user2","marcinllukasiak@gmail.com","user1Name","user1Surname",new Date(),true,false,new OperationDB(),new MainMeasurementDB()));
 
 
         System.out.println("Sprawdzenie");

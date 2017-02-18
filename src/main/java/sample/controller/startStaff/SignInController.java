@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import sample.DatabaseHibernate.DatabaseController;
 import sample.DatabaseHibernate.UserDB;
 import sample.controller.adminStaff.AdminLeftMenuButtonsController;
+import sample.controller.userStaff.UserLeftMenuButtonsController;
 import sample.dialogs.DialogsStaff;
 
 import java.io.IOException;
@@ -61,13 +62,14 @@ public class SignInController {
                 if((userDB.getPassword().equals(tfPasswordId.getText()) ) ){
 
                     System.out.println("Zalogowano");
-
+                    FXMLLoader loader;
+                    Parent parent;
 
                     if(userDB.getAdministrator()){
                         borderPaneMainController.setCenter("/fxml/adminStaff/onlineAdmin.fxml");
 
-                        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/adminStaff/AdminLeftMenuButtons.fxml"));
-                        Parent parent = null;
+                        loader = new FXMLLoader(this.getClass().getResource("/fxml/adminStaff/AdminLeftMenuButtons.fxml"));
+                        parent = null;
                         try {
                             parent = loader.load();
                         } catch (IOException e) {
@@ -79,6 +81,18 @@ public class SignInController {
                         adminLeftMenuButtonsController.setOnlineUser(userDB);
                     }else{
                         borderPaneMainController.setCenter("/fxml/userStaff/OnlineUser.fxml");
+
+                        loader = new FXMLLoader(this.getClass().getResource("/fxml/userStaff/UserLeftMenuButtons.fxml"));
+                        parent = null;
+                        try {
+                            parent = loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        borderPaneMainController.setLeft(parent);
+                        UserLeftMenuButtonsController userLeftMenuButtonsController = loader.getController();
+                        userLeftMenuButtonsController.setBorderPaneMainController(borderPaneMainController);
+                        userLeftMenuButtonsController.setOnlineUser(userDB);
                     }
 
 

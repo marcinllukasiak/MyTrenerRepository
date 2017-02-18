@@ -294,7 +294,7 @@ public class SingleTableTrainingController {
         assert countSColumn != null : "fx:id=\"countSColumn\" was not injected: check your FXML file 'SingleTableTrainingController.fxml'.";
         assert countRColumn != null : "fx:id=\"countRColumn\" was not injected: check your FXML file 'SingleTableTrainingController.fxml'.";
         // ladowanie przykladowego obiektu na którym bedziemy testowac
-        loadedTrainingDB = DatabaseController.selectTreningScheme(5,135); //testowy
+       // loadedTrainingDB = DatabaseController.selectTreningScheme(5,135); //testowy
         System.out.println("loadedTrainingDB = " + loadedTrainingDB);
         //Umozliwanie edycji po kliknieciu
 //        tabkeTraining.setEditable(true);
@@ -345,44 +345,79 @@ public class SingleTableTrainingController {
     @FXML
     void friadayTableAction() {
         selectedRow = null;
-        tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getFridayWorkout()));
+        try{
+            tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getFridayWorkout()));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     @FXML
     void mondayTableAction() {
         //inicjalizacjia tebeli danymi z ponniedziałku , pobiera nazwe treningu
         selectedRow = null;
-        tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getMondayWorkout()));
+        try{
+            tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getMondayWorkout()));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     @FXML
     void saturdayTableAction() {
         selectedRow = null;
-        tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getSaturdayWorkout()));
+        try{
+            tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getSaturdayWorkout()));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     @FXML
     void sundayTableAction() {
         selectedRow = null;
-        tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getSundayWorkout()));
+        try{
+            tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getSundayWorkout()));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     @FXML
     void thursdayTableAction() {
         selectedRow = null;
-        tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getThursdayWorkout()));
+        try{
+            tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getThursdayWorkout()));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     @FXML
     void tuesdayTableAction() {
         selectedRow = null;
-        tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getTuesdayWorkout()));
+        try{
+            tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getTuesdayWorkout()));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     @FXML
     void wednesdayTableAction() {
         selectedRow = null;
-        tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getWednesdayWorkout()));
+        try{
+            tabkeTraining.setItems(FXCollections.observableArrayList(loadedTrainingDB.getWednesdayWorkout()));
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
     //getters and setters
@@ -409,11 +444,11 @@ public class SingleTableTrainingController {
         } else {
             returne = false;
         }
-        if (tfNumber.getText().matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+")) {
+        if (tfCountS.getText().matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+")) {
         } else {
             returne = false;
         }
-        if (tfNumber.getText().matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+")) {
+        if (tfCountR.getText().matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+")) {
         } else {
             returne = false;
         }

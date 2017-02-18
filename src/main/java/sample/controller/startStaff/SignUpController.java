@@ -1,10 +1,10 @@
 package sample.controller.startStaff;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import org.hibernate.annotations.SourceType;
 import sample.DatabaseHibernate.DatabaseController;
+import sample.DatabaseHibernate.MainMeasurementDB;
 import sample.DatabaseHibernate.OperationDB;
 import sample.DatabaseHibernate.UserDB;
 import sample.dialogs.DialogsStaff;
@@ -49,6 +49,16 @@ public class SignUpController {
     private Label lUniqueNickValidationId;
     @FXML
     private Label lIncorrectEmailId;
+    @FXML
+    private Label lSexValidationId;
+
+    @FXML
+    private RadioButton rbMale;
+    @FXML
+    private ToggleGroup SexGroup;
+    @FXML
+    private RadioButton rbFemale;
+
 
     @FXML
     void signUpAction() {
@@ -82,7 +92,11 @@ public class SignUpController {
             }else if(tfSurnameId.getText().equals("")){
                 System.out.println("Nie podałęś Surname");
                 lSurnameValidationId.setVisible(true);
-            }else{
+            }else if(SexGroup.getSelectedToggle() == null){
+                System.out.println("Nie podałęś Sex");
+                lSexValidationId.setVisible(true);
+            }
+            else{
                 System.out.println(dpDateOfBirthID.getValue());
                 try{
                     if(!dpDateOfBirthID.getValue().equals(null)) { // jak nie jest nullem czyli data jest poprawna to tylko sprawdzi meila i koniec walidacji
@@ -114,7 +128,21 @@ public class SignUpController {
         if(successfulValidation.equals(true)) {
             String activateCod = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 6);
             OperationDB operationDB = new OperationDB(activateCod);
-            boolean unigueNick = DatabaseController.insertUser(new UserDB(tfNickId.getText(), tfPasswordId.getText(), tfEmailId.getText(), tfNameId.getText(), tfSurnameId.getText(), DateUtils.asDate(dpDateOfBirthID.getValue()), false, false,operationDB));
+            boolean unigueNick = false;
+            if(rbFemale.isSelected()){
+                //System.out.println("RADIOBUTTON: "+SexGroup.getSelectedToggle().getUserData().toString());
+                unigueNick = DatabaseController.insertUser(new UserDB(false,tfNickId.getText(), tfPasswordId.getText(), tfEmailId.getText(), tfNameId.getText(), tfSurnameId.getText(), DateUtils.asDate(dpDateOfBirthID.getValue()), false, false,operationDB,new MainMeasurementDB()));
+
+
+            }else if(rbMale.isSelected()){
+               // System.out.println("RADIOBUTTON: "+SexGroup.getSelectedToggle().getUserData().toString());
+                unigueNick = DatabaseController.insertUser(new UserDB(true,tfNickId.getText(), tfPasswordId.getText(), tfEmailId.getText(), tfNameId.getText(), tfSurnameId.getText(), DateUtils.asDate(dpDateOfBirthID.getValue()), false, false,operationDB,new MainMeasurementDB()));
+
+
+            }else{
+                System.out.println("Cos poszlo nie tak");
+            }
+
             System.out.println(unigueNick);
                 if(unigueNick){
                     DialogsStaff.signUpSuccessfulDialog(); //wyswietlenie komunikatu
@@ -138,6 +166,7 @@ public class SignUpController {
         lDataValidationId.setVisible(false);
         lUniqueNickValidationId.setVisible(false);
         lIncorrectEmailId.setVisible(false);
+        lSexValidationId.setVisible(false);
     }
 
     private void cleaningTextField(){
@@ -146,7 +175,9 @@ public class SignUpController {
         tfEmailId.clear();
         tfNameId.clear();
         tfSurnameId.clear();
-        dpDateOfBirthID.getEditor().clear();;
+        dpDateOfBirthID.getEditor().clear();
+        rbFemale.setSelected(false);
+        rbMale.setSelected(false);
     }
 
 }

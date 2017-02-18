@@ -14,7 +14,9 @@ public class UserDB {
     @GeneratedValue
     @Column(name = "USER_ID")
     private long idUser;
+
    // @Column(name = "nick", columnDefinition = "NOT NULL")
+    private boolean isMale;
     private String nick;
    // @Column(name = "password", columnDefinition = "NOT NULL")
     private String password;
@@ -31,9 +33,13 @@ public class UserDB {
     private Boolean isActivated;
   //  @Column(name = "isAdministrator", columnDefinition = "NOT NULL")
     private Boolean isAdministrator;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private OperationDB operationDB;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private MainMeasurementDB mainMeasurementDB;
 
 
 
@@ -43,7 +49,9 @@ public class UserDB {
 
     }
 
-    public UserDB(String nick, String password, String email, String name, String surname, Date dateOfBirth, Boolean isActivated, Boolean isAdministrator ,OperationDB operationDB ) {
+
+    public UserDB(Boolean isMaleA,String nick, String password, String email, String name, String surname, Date dateOfBirth, Boolean isActivated, Boolean isAdministrator, OperationDB operationDB, MainMeasurementDB mainMeasurementDB) {
+        this.isMale = isMaleA;
         this.nick = nick;
         this.password = password;
         this.email = email;
@@ -53,6 +61,7 @@ public class UserDB {
         this.isActivated = isActivated;
         this.isAdministrator = isAdministrator;
         this.operationDB = operationDB;
+        this.mainMeasurementDB = mainMeasurementDB;
     }
 
     @Override
@@ -66,6 +75,7 @@ public class UserDB {
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", isActivated=" + isActivated +
                 ", isAdministrator=" + isAdministrator +
+                ", isMale=" + isMale +
                 '}';
     }
     public String toStringUserInfo() {
@@ -76,12 +86,29 @@ public class UserDB {
                 "surname='" + surname + "'\n" +
                 "dateOfBirth='" + dateOfBirth + "'\n" +
                 "isActivated=" + isActivated + "\n" +
-                "isAdministrator=" + isAdministrator;
+                "isAdministrator=" + isAdministrator + "\n" +
+                "isMale="+isMale;
     }
 
 
     //Setters and getters
 
+
+    public boolean isMale() {
+        return isMale;
+    }
+
+    public void setMale(boolean male) {
+        isMale = male;
+    }
+
+    public MainMeasurementDB getMainMeasurementDB() {
+        return mainMeasurementDB;
+    }
+
+    public void setMainMeasurementDB(MainMeasurementDB mainMeasurementDB) {
+        this.mainMeasurementDB = mainMeasurementDB;
+    }
 
     public long getIdUser() {
         return idUser;

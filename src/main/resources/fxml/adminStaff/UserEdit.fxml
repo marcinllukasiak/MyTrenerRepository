@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.adminStaff.UserEditController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.adminStaff.UserEditController">
    <children>
-      <Label layoutX="106.0" layoutY="46.0" text="Lista użytkowników:" />
-      <ListView fx:id="lvUser" layoutX="106.0" layoutY="75.0" prefHeight="221.0" prefWidth="197.0" />
-      <TextField fx:id="tfNewValue" layoutX="345.0" layoutY="75.0" />
-      <Label layoutX="345.0" layoutY="46.0" text="Nowa Wartość" />
+      <Label layoutX="115.0" layoutY="4.0" text="Lista użytkowników:" />
+      <ListView fx:id="lvUser" layoutX="106.0" layoutY="34.0" prefHeight="262.0" prefWidth="197.0" />
+      <TextField fx:id="tfNewValue" layoutX="345.0" layoutY="31.0" />
+      <Label layoutX="375.0" layoutY="4.0" text="Nowa Wartość" />
       <Button layoutX="345.0" layoutY="149.0" maxWidth="186.0" mnemonicParsing="false" onAction="#changeNameAction" prefHeight="31.0" prefWidth="186.0" text="Zmień Imie" />
       <Button layoutX="345.0" layoutY="185.0" maxWidth="186.0" mnemonicParsing="false" onAction="#changeSurnameAction" prefHeight="31.0" prefWidth="186.0" text="Zmień Nazwisko" />
       <Button layoutX="345.0" layoutY="112.0" maxWidth="186.0" mnemonicParsing="false" onAction="#changePasswordAction" prefHeight="31.0" prefWidth="186.0" text="Zmień Hasło" />
@@ -26,5 +26,6 @@
       </Label>
       <Label fx:id="labelNotSelectUser" layoutX="205.0" layoutY="309.0" text="Nie wybrano użytkownika" textFill="#ff1818" visible="false" />
       <Label fx:id="labelWrongNewValue" layoutX="66.0" layoutY="309.0" text="Nie wprowadzono Nowej Wartości lub wprowadzona jest niepoprawna" textFill="#ff1818" visible="false" />
+      <Button layoutX="345.0" layoutY="75.0" mnemonicParsing="false" onAction="#changeSexAction" prefHeight="31.0" prefWidth="186.0" text="Zmiana Płci" />
    </children>
 </Pane>
