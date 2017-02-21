@@ -1,6 +1,7 @@
 package sample.DatabaseHibernate;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Marcin on 2017-02-15.
@@ -19,13 +20,23 @@ public class MainMeasurementDB {
     @OneToOne(mappedBy = "mainMeasurementDB")
     private UserDB userDB;
 
+    @OneToMany
+    @JoinColumn(name = "mesurementHelper")
+    private List<MesurementDBHelper> mesurements;
+
 
 
     public MainMeasurementDB() {
 
     }
 
+    public List<MesurementDBHelper> getMesurements() {
+        return mesurements;
+    }
 
+    public void setMesurements(List<MesurementDBHelper> mesurements) {
+        this.mesurements = mesurements;
+    }
     public long getIdMainMeasurement() {
         return idMainMeasurement;
     }

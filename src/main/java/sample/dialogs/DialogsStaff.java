@@ -78,5 +78,14 @@ public class DialogsStaff {
         alert.showAndWait();
     }
 
+    public static void infoWrongData() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Okno informujące o Wystąpieniu juz uzytej daty");
+        alert.setHeaderText(null);
+        alert.setContentText("Dodałeś już pomiar w tym dniu, nie można dodać więcej niz jednego pomiaru danego dnia, możesz przejść do Histori i edytować ten pomiar");
+
+        alert.showAndWait();
+    }
+
 
 }

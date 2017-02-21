@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import org.hibernate.*;
 import org.hibernate.Query;
 import org.hibernate.cfg.Configuration;
+import sample.dialogs.DialogsStaff;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -676,7 +677,7 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
 
 
     //#########################   MAIN MESUREMENT DB  -  START    ##########################
-    public static void updateUserDB (long idUserDBA,UserDB updateUserDB){
+    public static void updateUserDBMainMesure (long idUserDBA,UserDB updateUserDB){
         UserDB userDB = null;
         Session session = sessionFactory.openSession();
         try{
@@ -703,6 +704,82 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
         }
     }
 
+
+
+    public static boolean insertMesurementDBHelper(MesurementDBHelper mesurementDBHelper){
+        boolean returne = false;
+
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            session.save(mesurementDBHelper);
+
+            session.getTransaction().commit();
+            session.close();
+
+            returne = true;
+
+        }catch (Exception e ){
+            returne = false;
+            DialogsStaff.infoWrongData();
+        }
+
+        return returne;
+    }
+
+    public static void updateUserDBMesureHelper (long idUserDBA,MesurementDBHelper mesurementDBHelper){
+        UserDB userDB = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT u FROM UserDB u " +
+                    "where u.idUser = :idUserDB ");
+            query.setParameter("idUserDB",idUserDBA);
+
+            userDB = (UserDB) query.uniqueResult();
+            System.out.println(userDB);
+
+            userDB.getMainMeasurementDB().getMesurements().add(mesurementDBHelper);
+
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+    }
+
+
+    public static ObservableList<String> getAllMesureUser(long idMainMesurementA){
+
+        Session session = sessionFactory.openSession();
+        ObservableList<String> trainingList = null;
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT mm.mesurements FROM MainMeasurementDB mm WHERE mm.idMainMeasurement= :idMainMesurement");
+            query.setParameter("idMainMesurement",idMainMesurementA);
+
+            List<MesurementDBHelper> listResultO = query.list();
+
+
+            for (MesurementDBHelper mh : listResultO) {
+                System.out.println(mh);
+            }
+
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println(e);
+        }
+        return trainingList;
+
+    }
 
 
     //#########################   MAIN MESUREMENT DB  -  END      ##########################

@@ -118,7 +118,7 @@ public class CalculateBMRController {
             onlineUser.getMainMeasurementDB().setCaloric(Integer.valueOf(tfCaloric.getText()));
 
 
-            DatabaseController.updateUserDB(onlineUser.getIdUser(),onlineUser);
+            DatabaseController.updateUserDBMainMesure(onlineUser.getIdUser(),onlineUser);
         }
 
 
@@ -221,7 +221,7 @@ public class CalculateBMRController {
     }
     private Boolean validationNumerics(){ // tfage.getText().matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+"))
         boolean returne = true;
-        if (tfBodyWeight.getText().matches("((-|\\\\+)?[0-9]+(\\\\.[0-9]+)?)+")) {
+        if (tfBodyWeight.getText().matches("([0-9]*)\\.([0-9]*)")) {
         } else {
             lValidation.setText("Wartość podana w 'Masa Ciała' jest błędna");
             lValidation.setVisible(true);

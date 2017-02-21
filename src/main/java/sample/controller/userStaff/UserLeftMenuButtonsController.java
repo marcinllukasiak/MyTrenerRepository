@@ -58,11 +58,26 @@ public class UserLeftMenuButtonsController {
 
         CalculateBMRController calculateBMRController = loader.getController();
         calculateBMRController.setOnlineUser(onlineUser);
-        calculateBMRController.setBorderPaneMainController(borderPaneMainController);
+       // calculateBMRController.setBorderPaneMainController(borderPaneMainController);
+
     }
 
     @FXML
     void openMesureScreen() {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/userStaff/MesureTables.fxml"));
+        Parent parent = null;
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        borderPaneMainController.setCenter(parent);
+
+        MesureTablesController mesureTablesController = loader.getController();
+        mesureTablesController.setOnlineUser(onlineUser);
+       // mesureTablesController.setBorderPaneMainController(borderPaneMainController);
+
+
 
     }
 
