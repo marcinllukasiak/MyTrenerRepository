@@ -59,7 +59,7 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
             query.setParameter("nick",nickA);
 
             userDB = (UserDB) query.uniqueResult();
-
+            System.out.println(userDB.getMainMeasurementDB().getMesurements());
 
         session.getTransaction().commit();
         session.close();
@@ -691,7 +691,7 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
             System.out.println(userDB);
 
             userDB.setMale(updateUserDB.isMale());
-            userDB.getMainMeasurementDB().setBodyWeight(updateUserDB.getMainMeasurementDB().getBodyWeight());
+
             userDB.getMainMeasurementDB().setSizeCm(updateUserDB.getMainMeasurementDB().getSizeCm());
             userDB.getMainMeasurementDB().setCaloric(updateUserDB.getMainMeasurementDB().getCaloric());
 

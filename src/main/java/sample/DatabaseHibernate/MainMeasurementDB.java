@@ -13,7 +13,6 @@ public class MainMeasurementDB {
     @Column(name = "MAINMESSURE_ID")
     private long idMainMeasurement;
 
-    private double BodyWeight;
     private int sizeCm;
     private int caloric;
 
@@ -45,13 +44,7 @@ public class MainMeasurementDB {
         this.idMainMeasurement = idMainMeasurement;
     }
 
-    public double getBodyWeight() {
-        return BodyWeight;
-    }
 
-    public void setBodyWeight(double bodyWeight) {
-        BodyWeight = bodyWeight;
-    }
 
     public int getSizeCm() {
         return sizeCm;

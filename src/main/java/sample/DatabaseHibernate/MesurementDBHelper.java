@@ -18,6 +18,7 @@ public class MesurementDBHelper {
 
     @Temporal(TemporalType.DATE)
     private Date dateOfMesurement;
+    private double BodyWeight;
     private int neckSize;
     private int chestSize;
     private int waistSize;
@@ -39,7 +40,7 @@ public class MesurementDBHelper {
 
     }
 
-    public MesurementDBHelper(Date dateOfMesurement, int neckSize, int chestSize, int waistSize, int hipsSize, int lArmSize, int rArmSize, int lForearmSize, int rForearmSize, int lThighSize, int rThighSize, int lCalfSize, int rCalfSize) {
+    public MesurementDBHelper(Date dateOfMesurement,double BodyWeightA, int neckSize, int chestSize, int waistSize, int hipsSize, int lArmSize, int rArmSize, int lForearmSize, int rForearmSize, int lThighSize, int rThighSize, int lCalfSize, int rCalfSize) {
         this.dateOfMesurement = dateOfMesurement;
         this.neckSize = neckSize;
         this.chestSize = chestSize;
@@ -53,6 +54,15 @@ public class MesurementDBHelper {
         this.rThighSize = rThighSize;
         this.lCalfSize = lCalfSize;
         this.rCalfSize = rCalfSize;
+        this.BodyWeight = BodyWeightA;
+    }
+
+    public double getBodyWeight() {
+        return BodyWeight;
+    }
+
+    public void setBodyWeight(double bodyWeight) {
+        BodyWeight = bodyWeight;
     }
 
     public long getIdMesurement() {

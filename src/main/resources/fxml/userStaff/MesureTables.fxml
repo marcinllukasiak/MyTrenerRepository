@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.userStaff.MesureTablesController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.userStaff.MesureTablesController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="329.0" layoutX="105.0" layoutY="141.0" stroke="BLACK" strokeType="INSIDE" width="569.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="131.0" layoutX="105.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" width="569.0" />
@@ -27,21 +26,22 @@
       <Label layoutX="389.0" layoutY="407.0" text="Udo    R:" />
       <Label layoutX="189.0" layoutY="438.0" text="Łydka   L:" />
       <Label layoutX="386.0" layoutY="438.0" text="Łydka   R:" />
-      <Button layoutX="504.0" layoutY="235.0" mnemonicParsing="false" onAction="#saveMesureAction" text="Zapisz Pomiar" />
-      <Button layoutX="473.0" layoutY="67.0" mnemonicParsing="false" onAction="#saveChangeProfileAction" text="Zapisz zmiany w profilu" />
+      <Button layoutX="503.0" layoutY="248.0" mnemonicParsing="false" onAction="#saveMesureAction" text="Zapisz Pomiar" />
+      <Button layoutX="472.0" layoutY="69.0" mnemonicParsing="false" onAction="#saveChangeProfileAction" text="Zapisz zmiany w profilu" />
       <RadioButton fx:id="rbMale" layoutX="254.0" layoutY="6.0" mnemonicParsing="false" text="Mężczyzna">
          <toggleGroup>
             <ToggleGroup fx:id="SexGroup" />
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="rbFemale" layoutX="364.0" layoutY="6.0" mnemonicParsing="false" text="Kobieta" toggleGroup="$SexGroup" />
-      <TextField fx:id="tfBodyWeight" layoutX="254.0" layoutY="31.0" />
-      <TextField fx:id="tfSizeCm" layoutX="254.0" layoutY="67.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c8ced3" height="80.0" layoutX="459.0" layoutY="163.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <TextField fx:id="tfBodyWeight" layoutX="559.0" layoutY="184.0" prefHeight="31.0" prefWidth="78.0" />
+      <TextField fx:id="tfSizeCm" layoutX="254.0" layoutY="50.0" />
       <Label alignment="CENTER_RIGHT" layoutX="95.0" layoutY="6.0" prefWidth="150.0" text="Płeć:" />
-      <Label alignment="CENTER_RIGHT" layoutX="101.0" layoutY="36.0" prefWidth="150.0" text="Masa Ciała:" />
-      <Label alignment="CENTER_RIGHT" layoutX="95.0" layoutY="72.0" prefWidth="150.0" text="Wzrost:" />
-      <Label layoutX="130.0" layoutY="106.0" text="Zapotrzebowanie:" />
-      <TextField fx:id="tfCaloric" layoutX="254.0" layoutY="101.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="400.0" layoutY="189.0" prefWidth="150.0" text="Masa Ciała:" />
+      <Label alignment="CENTER_RIGHT" layoutX="95.0" layoutY="55.0" prefWidth="150.0" text="Wzrost:" />
+      <Label layoutX="130.0" layoutY="89.0" text="Zapotrzebowanie:" />
+      <TextField fx:id="tfCaloric" layoutX="254.0" layoutY="84.0" />
       <TextField fx:id="tfNeck" layoutX="254.0" layoutY="184.0" />
       <TextField fx:id="tfChest" layoutX="254.0" layoutY="219.0" />
       <TextField fx:id="tfWaist" layoutX="254.0" layoutY="258.0" />
@@ -56,7 +56,7 @@
       <TextField fx:id="tfLCalf" layoutX="255.0" layoutY="433.0" prefHeight="31.0" prefWidth="78.0" />
       <DatePicker fx:id="dpDateOfMeasurement" layoutX="255.0" layoutY="147.0" prefHeight="31.0" prefWidth="186.0" />
       <Label fx:id="lValidation1" layoutX="475.0" layoutY="106.0" text="Validation FALSE 1" textFill="#ff1818" visible="false" />
-      <Label fx:id="lValidation12" layoutX="499.0" layoutY="284.0" text="Validation FALSE 2" textFill="#ff1818" visible="false" />
+      <Label fx:id="lValidation12" layoutX="498.0" layoutY="289.0" text="Validation FALSE 2" textFill="#ff1818" visible="false" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff0011e2" height="54.0" layoutX="475.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
       <Button layoutX="490.0" layoutY="21.0" mnemonicParsing="false" onAction="#loadDataAction" text="Wczytaj Dane" />
    </children>

@@ -75,6 +75,7 @@ public class UserLeftMenuButtonsController {
 
         MesureTablesController mesureTablesController = loader.getController();
         mesureTablesController.setOnlineUser(onlineUser);
+        mesureTablesController.setUserLeftMenuButtonsController(this);
        // mesureTablesController.setBorderPaneMainController(borderPaneMainController);
 
 

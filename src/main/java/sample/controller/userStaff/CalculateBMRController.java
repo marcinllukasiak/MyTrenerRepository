@@ -3,12 +3,14 @@ package sample.controller.userStaff;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.DatabaseHibernate.DatabaseController;
+import sample.DatabaseHibernate.MesurementDBHelper;
 import sample.DatabaseHibernate.UserDB;
 import sample.controller.startStaff.BorderPaneMainController;
 import sample.main.DateUtils;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 /**
  * Created by Marcin on 2017-02-16.
@@ -113,7 +115,6 @@ public class CalculateBMRController {
                 onlineUser.setMale(false);
             }
             //mesureMain
-            onlineUser.getMainMeasurementDB().setBodyWeight(Double.valueOf(tfBodyWeight.getText()));
             onlineUser.getMainMeasurementDB().setSizeCm(Integer.valueOf(tfSizeCm.getText()));
             onlineUser.getMainMeasurementDB().setCaloric(Integer.valueOf(tfCaloric.getText()));
 
@@ -135,7 +136,25 @@ public class CalculateBMRController {
             rbFemale.setSelected(true);
         }
         //MasaCiala
-        tfBodyWeight.setText(String.valueOf(onlineUser.getMainMeasurementDB().getBodyWeight()));
+        String bW = new String("666");
+        //pobiramy liste
+
+
+        try{
+            List<MesurementDBHelper> mesurementList = onlineUser.getMainMeasurementDB().getMesurements();
+
+            bW = String.valueOf(mesurementList.get(mesurementList.size()-1).getBodyWeight());
+
+        }catch (Exception e){
+            System.out.println("CalculatorBMR "+e);
+            bW = "Brak Wagi w Bazie Danych";
+
+        }
+
+
+
+
+        tfBodyWeight.setText(bW);
         //wzrost
         tfSizeCm.setText(String.valueOf(onlineUser.getMainMeasurementDB().getSizeCm()));
         //wiek
@@ -221,7 +240,7 @@ public class CalculateBMRController {
     }
     private Boolean validationNumerics(){ // tfage.getText().matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+"))
         boolean returne = true;
-        if (tfBodyWeight.getText().matches("([0-9]*)\\.([0-9]*)")) {
+        if (tfBodyWeight.getText().matches("(-|\\+)?[0-9]+")) {
         } else {
             lValidation.setText("Wartość podana w 'Masa Ciała' jest błędna");
             lValidation.setVisible(true);

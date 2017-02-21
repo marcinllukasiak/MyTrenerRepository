@@ -17,6 +17,7 @@ import java.time.Period;
 public class MesureTablesController {
     private BorderPaneMainController borderPaneMainController;
     private UserDB onlineUser;
+    private UserLeftMenuButtonsController userLeftMenuButtonsController;
 
 
 
@@ -76,8 +77,6 @@ public class MesureTablesController {
         }else{
             rbFemale.setSelected(true);
         }
-        //MasaCiala
-        tfBodyWeight.setText(String.valueOf(onlineUser.getMainMeasurementDB().getBodyWeight()));
         //wzrost
         tfSizeCm.setText(String.valueOf(onlineUser.getMainMeasurementDB().getSizeCm()));
         //Zapotrzebowanie kaloryczne
@@ -98,7 +97,6 @@ public class MesureTablesController {
                 onlineUser.setMale(false);
             }
             //mesureMain
-            onlineUser.getMainMeasurementDB().setBodyWeight(Double.valueOf(tfBodyWeight.getText()));
             onlineUser.getMainMeasurementDB().setSizeCm(Integer.valueOf(tfSizeCm.getText()));
             onlineUser.getMainMeasurementDB().setCaloric(Integer.valueOf(tfCaloric.getText()));
 
@@ -110,7 +108,6 @@ public class MesureTablesController {
     }
 
         public void clearField1(){
-            tfBodyWeight.clear();
             tfSizeCm.clear();
             tfCaloric.clear();
         }
@@ -122,7 +119,8 @@ public class MesureTablesController {
         // Walidacja
         if(this.validationNumerics2() && this.validationNotEmptyFields2()){
             //Utworzenie MesurementDBHelper
-            MesurementDBHelper mesurementDBHelper = new MesurementDBHelper(DateUtils.asDate(dpDateOfMeasurement.getValue()),Integer.valueOf(tfNeck.getText()),
+            MesurementDBHelper mesurementDBHelper = new MesurementDBHelper(DateUtils.asDate(dpDateOfMeasurement.getValue()),
+                    Double.valueOf(tfBodyWeight.getText()),Integer.valueOf(tfNeck.getText()),
                     Integer.valueOf(tfChest.getText()),Integer.valueOf(tfWaist.getText()),Integer.valueOf(tfHips.getText()),
                     Integer.valueOf(tfLArm.getText()), Integer.valueOf(tfRArm.getText()),
                     Integer.valueOf(tfLForearm.getText()),Integer.valueOf(tfRForearm.getText()),
@@ -136,7 +134,8 @@ public class MesureTablesController {
 
                 DatabaseController.getAllMesureUser(onlineUser.getMainMeasurementDB().getIdMainMeasurement());
 //            //Połączenie online usera z miara
-//            onlineUser.getMainMeasurementDB().getMesurements().add(mesurementDBHelper);
+                onlineUser.getMainMeasurementDB().getMesurements().add(mesurementDBHelper);
+                userLeftMenuButtonsController.setOnlineUser(onlineUser);
 
                 //czyszczenie fieldow
                 dpDateOfMeasurement.setValue(null);
@@ -154,6 +153,7 @@ public class MesureTablesController {
     }
 
     private void clearField2(){
+        tfBodyWeight.clear();
         tfNeck.clear();
         tfChest.clear();
         tfWaist.clear();
@@ -213,6 +213,10 @@ public class MesureTablesController {
             returne = false;
         }else if (!tfRCalf.getText().matches("(-|\\+)?[0-9]+")) {
             lValidation12.setText("Wartość 'Lydka R'-błąd");
+            lValidation12.setVisible(true);
+            returne = false;
+        }else if (!tfBodyWeight.getText().matches("(-|\\+)?[0-9]+")) {
+            lValidation12.setText("Wartość 'Masa Ciała'-błąd");
             lValidation12.setVisible(true);
             returne = false;
         }
@@ -277,6 +281,10 @@ public class MesureTablesController {
             lValidation12.setText("Nie podano 'Lydka R'");
             lValidation12.setVisible(true);
             returne = false;
+        }else if(tfBodyWeight.getText().equals("")) {//sprawdzenie wartosci czy wpisane
+            lValidation12.setText("Nie podano 'Masy Ciała'");
+            lValidation12.setVisible(true);
+            returne = false;
         }
 
         return returne;
@@ -288,10 +296,6 @@ public class MesureTablesController {
         //sprawdzanie radioboxow czy wybrane
         if(SexGroup.getSelectedToggle() == null){
             lValidation1.setText("Nie podano 'Płci'");
-            lValidation1.setVisible(true);
-            returne = false;
-        }else if(tfBodyWeight.getText().equals("")) {//sprawdzenie wartosci czy wpisane
-            lValidation1.setText("Nie podano 'Masy Ciała'");
             lValidation1.setVisible(true);
             returne = false;
         }else if(tfSizeCm.getText().equals("")) {//sprawdzenie wartosci czy wpisane
@@ -309,12 +313,7 @@ public class MesureTablesController {
 
     private Boolean validationNumerics1(){ // tfage.getText().matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+"))
         boolean returne = true;
-        if (tfBodyWeight.getText().matches("([0-9]*)\\.([0-9]*)")) {
-        } else {
-            lValidation1.setText("Wartość 'Masa Ciała'-błąd");
-            lValidation1.setVisible(true);
-            returne = false;
-        }
+
         if (tfSizeCm.getText().matches("(-|\\+)?[0-9]+")) {
 
         } else {
@@ -347,5 +346,13 @@ public class MesureTablesController {
 
     public void setOnlineUser(UserDB onlineUser) {
         this.onlineUser = onlineUser;
+    }
+
+    public UserLeftMenuButtonsController getUserLeftMenuButtonsController() {
+        return userLeftMenuButtonsController;
+    }
+
+    public void setUserLeftMenuButtonsController(UserLeftMenuButtonsController userLeftMenuButtonsController) {
+        this.userLeftMenuButtonsController = userLeftMenuButtonsController;
     }
 }
