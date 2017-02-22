@@ -753,23 +753,32 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
     }
 
 
-    public static ObservableList<String> getAllMesureUser(long idMainMesurementA){
+
+
+    //#########################   MAIN MESUREMENT DB  -  END      ##########################
+
+    //#########################   MESUREMENT DB HLEPER  -  START     ##########################
+
+    public static ObservableList<String> getAllMesurementUser(long idMainMesurementA){
 
         Session session = sessionFactory.openSession();
-        ObservableList<String> trainingList = null;
+        ObservableList<String> mesurementList = null;
         try{
             session.beginTransaction();
 
-            Query query = session.createQuery("SELECT mm.mesurements FROM MainMeasurementDB mm WHERE mm.idMainMeasurement= :idMainMesurement");
-            query.setParameter("idMainMesurement",idMainMesurementA);
+            Query query = session.createQuery("SELECT mm.mesurements FROM MainMeasurementDB mm WHERE mm.idMainMeasurement = :mesurementIdA");
+            query.setParameter("mesurementIdA",idMainMesurementA);
+
 
             List<MesurementDBHelper> listResultO = query.list();
+            List<String> listResultS = new ArrayList<String>();
+            String mesurementDate;
 
-
-            for (MesurementDBHelper mh : listResultO) {
-                System.out.println(mh);
+            for (MesurementDBHelper aRow : listResultO) {
+                mesurementDate = aRow.getDateOfMesurement().toString();
+                listResultS.add(mesurementDate);
             }
-
+            mesurementList = FXCollections.observableArrayList(listResultS);
 
             session.getTransaction().commit();
             session.close();
@@ -777,14 +786,10 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
         }catch (Exception e ){
             System.err.println(e);
         }
-        return trainingList;
+        return mesurementList;
 
     }
-
-
-    //#########################   MAIN MESUREMENT DB  -  END      ##########################
-
-
+//#########################   MESUREMENT DB HLEPER  -  END     ##########################
 
 
 //SHEMAT

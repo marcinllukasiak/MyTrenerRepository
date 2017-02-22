@@ -132,7 +132,6 @@ public class MesureTablesController {
                 //wyonanie polecenia updatujacego tego usera
                 DatabaseController.updateUserDBMesureHelper(onlineUser.getIdUser(),mesurementDBHelper);
 
-                DatabaseController.getAllMesureUser(onlineUser.getMainMeasurementDB().getIdMainMeasurement());
 //            //Połączenie online usera z miara
                 onlineUser.getMainMeasurementDB().getMesurements().add(mesurementDBHelper);
                 userLeftMenuButtonsController.setOnlineUser(onlineUser);

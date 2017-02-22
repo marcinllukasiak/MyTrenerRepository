@@ -84,6 +84,18 @@ public class UserLeftMenuButtonsController {
 
     @FXML
     void open3() {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/userStaff/HistoryMesureTables.fxml"));
+        Parent parent = null;
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        borderPaneMainController.setCenter(parent);
+
+        HistoryMesureTablesController historyMesureTablesController = loader.getController();
+        historyMesureTablesController.setOnlineUser(onlineUser);
+       // mesureTablesController.setUserLeftMenuButtonsController(this);
 
     }
 

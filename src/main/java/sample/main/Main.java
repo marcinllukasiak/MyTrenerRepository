@@ -103,6 +103,14 @@ public class Main extends Application {
 
         DatabaseController.insertUser(new UserDB(true,"admin","admin","marcinllukasiak@gmail.com","Marcin","Lukasiak",new Date(),true,true,new OperationDB(),new MainMeasurementDB()));
         DatabaseController.insertUser(new UserDB(true,"user1","user1","marcinllukasiak@gmail.com","user1Name","user1Surname",new Date(),true,false,new OperationDB(),new MainMeasurementDB()));
+        UserDB userDB = null;
+        userDB=DatabaseController.selectUser("user1");
+        MesurementDBHelper mesurementDBHelper = new MesurementDBHelper( new Date(2017,2,1),1,1,1,1,1,1,1,1,1,1,1,1,1);
+        DatabaseController.insertMesurementDBHelper(mesurementDBHelper);
+        DatabaseController.updateUserDBMesureHelper(userDB.getIdUser(),mesurementDBHelper);
+        MesurementDBHelper mesurementDBHelper2 = new MesurementDBHelper( new Date(2017,3,13),2,2,2,2,2,2,2,2,2,2,2,2,2);
+        DatabaseController.insertMesurementDBHelper(mesurementDBHelper2);
+        DatabaseController.updateUserDBMesureHelper(userDB.getIdUser(),mesurementDBHelper2);
         DatabaseController.insertUser(new UserDB(false,"user2","user2","marcinllukasiak@gmail.com","user1Name","user1Surname",new Date(),true,false,new OperationDB(),new MainMeasurementDB()));
 
 
