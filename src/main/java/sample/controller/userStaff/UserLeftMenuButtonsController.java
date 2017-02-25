@@ -46,6 +46,23 @@ public class UserLeftMenuButtonsController {
     }
 
     @FXML
+    void openMainTreningScreen() {
+        borderPaneMainController.clearBorderPaneRight();
+        System.out.println(onlineUser);
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/adminStaff/ChangePassword.fxml"));
+        Parent parent = null;
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        borderPaneMainController.setCenter(parent);
+        ChangePasswordController changePasswordController = loader.getController();
+        changePasswordController.setOnlineUser(onlineUser);
+        changePasswordController.setUserLeftMenuButtonsController(this);
+    }
+
+    @FXML
     void openCalculateScreen() {
        // borderPaneMainController.clearBorderPaneRight();
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/userStaff/CalculateBMR.fxml"));
@@ -102,6 +119,27 @@ public class UserLeftMenuButtonsController {
         historyMesureTablesController.setOnlineUserAndInitialList(onlineUser);
 
     }
+    @FXML
+    void openMeasurementBFScreen() {
+        //zaktualizowanie usera
+        onlineUser = DatabaseController.selectUser(onlineUser.getNick());
+
+
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/userStaff/MeasurementBF.fxml"));
+        Parent parent = null;
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        borderPaneMainController.setCenter(parent);
+
+        MeasurementBFController measurementBFController = loader.getController();
+        measurementBFController.setOnlineUser(onlineUser);
+        measurementBFController.initializationField();
+
+    }
+
 
 
 

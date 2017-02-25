@@ -106,24 +106,28 @@ public class HistoryMesureTablesController {
 
     @FXML
     void savechartAction() {
-        lValidation1.setVisible(false);
+
         Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/userStaff/LineChartSizeToDate.fxml"));
-            root = loader.load();
-
-            LineChartSizeToDateController lineChartSizeToDateController = loader.getController();
-            lineChartSizeToDateController.setOnlineUser(onlineUser);
-            lineChartSizeToDateController.initialChart();
-
-            Scene scenaa = new Scene(root);
+            lValidation1.setVisible(false);
 
             if((!tfPath.getText().equals("No Directory selected")) && (!tfPath.getText().equals(""))){
+
+
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/userStaff/LineChartSizeToDate.fxml"));
+                root = loader.load();
+
+                LineChartSizeToDateController lineChartSizeToDateController = loader.getController();
+                lineChartSizeToDateController.setOnlineUser(onlineUser);
+                lineChartSizeToDateController.initialChart();
+
+                Scene scenaa = new Scene(root);
                 lineChartSizeToDateController.exportChartToFile(scenaa,tfPath.getText()+"\\chart12.png");
 
             }else{
                 lValidation1.setText("Nie podano ścieżki");
                 lValidation1.setVisible(true);
+
             }
 
         }

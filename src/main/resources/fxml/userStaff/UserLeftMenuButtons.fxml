@@ -5,7 +5,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.userStaff.UserLeftMenuButtonsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="170.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.userStaff.UserLeftMenuButtonsController">
    <children>
       <ToggleButton mnemonicParsing="false" onAction="#openChangePasswordScreen" prefHeight="50.0" prefWidth="150.0" text="Zmień hasło">
          <toggleGroup>
@@ -15,6 +15,8 @@
       <ToggleButton mnemonicParsing="false" onAction="#openCalculateScreen" prefHeight="50.0" prefWidth="150.0" text="Wylicz BMR" toggleGroup="$ToggleGroupMenu" />
       <ToggleButton mnemonicParsing="false" onAction="#openMesureScreen" prefHeight="50.0" prefWidth="150.0" text="Dokonaj Pomiarów" toggleGroup="$ToggleGroupMenu" />
       <ToggleButton mnemonicParsing="false" onAction="#openHistoryMesureTables" prefHeight="50.0" prefWidth="150.0" text="Historia Pomiarów" toggleGroup="$ToggleGroupMenu" />
+      <ToggleButton mnemonicParsing="false" onAction="#openMeasurementBFScreen" prefHeight="50.0" prefWidth="150.0" text="Pomiar BF" toggleGroup="$ToggleGroupMenu" />
+      <ToggleButton mnemonicParsing="false" onAction="#openMainTreningScreen" prefHeight="50.0" prefWidth="150.0" text="Trening" toggleGroup="$ToggleGroupMenu" />
       <ToggleButton mnemonicParsing="false" onAction="#logout" prefHeight="50.0" prefWidth="150.0" text="Wyloguj" toggleGroup="$ToggleGroupMenu" />
    </children>
    <padding>

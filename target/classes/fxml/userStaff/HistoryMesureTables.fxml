@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.userStaff.HistoryMesureTablesController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.userStaff.HistoryMesureTablesController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="329.0" layoutX="105.0" layoutY="141.0" stroke="BLACK" strokeType="INSIDE" width="569.0" />
       <Label layoutX="214.0" layoutY="189.0" text="Kark:" />
@@ -35,8 +35,7 @@
       <TextField fx:id="tfRThigh" layoutX="454.0" layoutY="402.0" prefHeight="31.0" prefWidth="78.0" />
       <TextField fx:id="tfRCalf" layoutX="454.0" layoutY="433.0" prefHeight="31.0" prefWidth="78.0" />
       <TextField fx:id="tfLCalf" layoutX="255.0" layoutY="433.0" prefHeight="31.0" prefWidth="78.0" />
-      <Label fx:id="lValidation1" layoutX="475.0" layoutY="106.0" prefHeight="21.0" prefWidth="186.0" text="Validation FALSE 1" textFill="#ff1818" visible="false" />
-      <Label fx:id="lValidation12" layoutX="499.0" layoutY="284.0" text="Validation FALSE 2" textFill="#ff1818" visible="false" />
+      <Label fx:id="lValidation12" layoutX="446.0" layoutY="284.0" text="Validation FALSE 2" textFill="#ff1818" visible="false" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3e3e4" height="136.0" layoutX="105.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" width="569.0" />
       <Label layoutX="121.0" layoutY="4.0" text="Lista Pomiarow" />
       <ListView fx:id="lvMesurements" layoutX="121.0" layoutY="27.0" prefHeight="106.0" prefWidth="197.0" />
@@ -48,5 +47,6 @@
       <TextField fx:id="tfBodyWeight" layoutX="255.0" layoutY="145.0" prefHeight="31.0" prefWidth="186.0" />
       <Label alignment="CENTER_RIGHT" layoutX="96.0" layoutY="150.0" prefWidth="150.0" text="Masa Ciała:" />
       <Button layoutX="507.0" layoutY="65.0" mnemonicParsing="false" onAction="#savechartAction" prefHeight="31.0" prefWidth="133.0" text="Zapisz Wykres" />
+      <Label fx:id="lValidation1" layoutX="475.0" layoutY="106.0" prefHeight="21.0" prefWidth="186.0" text="Validation FALSE 1" textFill="#ff1818" visible="false" />
    </children>
 </Pane>
