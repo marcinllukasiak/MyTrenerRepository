@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 import sample.dialogs.DialogsStaff;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -771,6 +772,9 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
 
 
             List<MesurementDBHelper> listResultO = query.list();
+            //sortowanie
+            Collections.sort(listResultO);
+
             List<String> listResultS = new ArrayList<String>();
             String mesurementDate;
 
@@ -789,6 +793,69 @@ public class DatabaseController { //kazda funkcja pobiera sessionFactory i potrz
         return mesurementList;
 
     }
+
+    public static void deleteMesurementDBHelper (long idMesurementHelperA){
+        MesurementDBHelper mesurementDBHelper = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT mh FROM MesurementDBHelper mh " +
+                    "where mh.idMesurement = :idMesurementHelper ");
+            query.setParameter("idMesurementHelper",idMesurementHelperA);
+            mesurementDBHelper = (MesurementDBHelper) query.uniqueResult();
+            System.out.println(mesurementDBHelper);
+
+            session.delete(mesurementDBHelper);
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+
+    }
+
+    public static void updateMesurementDBHelper (long idMesurementDBHelperA , MesurementDBHelper mesurementDBHelperA){
+        MesurementDBHelper mesurementDBHelper = null;
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+
+            Query query = session.createQuery("SELECT mh FROM MesurementDBHelper mh where mh.idMesurement = :idMesurementHelper");
+            query.setParameter("idMesurementHelper",idMesurementDBHelperA);
+
+            mesurementDBHelper = (MesurementDBHelper) query.uniqueResult();
+            System.out.println(mesurementDBHelper);
+
+            //zamiana
+            mesurementDBHelper.setBodyWeight(mesurementDBHelperA.getBodyWeight());
+            mesurementDBHelper.setNeckSize(mesurementDBHelperA.getNeckSize());
+            mesurementDBHelper.setChestSize(mesurementDBHelperA.getChestSize());
+            mesurementDBHelper.setWaistSize(mesurementDBHelperA.getWaistSize());
+            mesurementDBHelper.setHipsSize(mesurementDBHelperA.getHipsSize());
+            mesurementDBHelper.setlArmSize(mesurementDBHelperA.getlArmSize());
+            mesurementDBHelper.setrArmSize(mesurementDBHelperA.getrArmSize());
+            mesurementDBHelper.setlForearmSize(mesurementDBHelperA.getlForearmSize());
+            mesurementDBHelper.setrForearmSize(mesurementDBHelperA.getrForearmSize());
+            mesurementDBHelper.setlThighSize(mesurementDBHelperA.getlThighSize());
+            mesurementDBHelper.setrThighSize(mesurementDBHelperA.getrThighSize());
+            mesurementDBHelper.setlCalfSize(mesurementDBHelperA.getlCalfSize());
+            mesurementDBHelper.setrCalfSize(mesurementDBHelperA.getrCalfSize());
+
+
+
+            session.getTransaction().commit();
+            session.close();
+
+        }catch (Exception e ){
+            System.err.println("Exception My: "+e);
+        }
+
+    }
+
+
 //#########################   MESUREMENT DB HLEPER  -  END     ##########################
 
 

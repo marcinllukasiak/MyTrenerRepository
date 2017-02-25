@@ -4,6 +4,7 @@ package sample.controller.userStaff;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import sample.DatabaseHibernate.DatabaseController;
 import sample.DatabaseHibernate.UserDB;
 import sample.controller.adminStaff.AdminEditController;
 import sample.controller.adminStaff.ChangePasswordController;
@@ -83,7 +84,11 @@ public class UserLeftMenuButtonsController {
     }
 
     @FXML
-    void open3() {
+    void openHistoryMesureTables() {
+        //zaktualizowanie usera
+        onlineUser = DatabaseController.selectUser(onlineUser.getNick());
+
+
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/userStaff/HistoryMesureTables.fxml"));
         Parent parent = null;
         try {
@@ -94,8 +99,7 @@ public class UserLeftMenuButtonsController {
         borderPaneMainController.setCenter(parent);
 
         HistoryMesureTablesController historyMesureTablesController = loader.getController();
-        historyMesureTablesController.setOnlineUser(onlineUser);
-       // mesureTablesController.setUserLeftMenuButtonsController(this);
+        historyMesureTablesController.setOnlineUserAndInitialList(onlineUser);
 
     }
 

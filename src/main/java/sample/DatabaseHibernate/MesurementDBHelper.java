@@ -10,7 +10,7 @@ import java.util.Date;
 @Table(uniqueConstraints={
         @UniqueConstraint(columnNames = {"dateOfMesurement"})
 })
-public class MesurementDBHelper {
+public class MesurementDBHelper implements Comparable<MesurementDBHelper> {
     @Id
     @GeneratedValue
     @Column(name = "Mesurement_ID")
@@ -35,6 +35,13 @@ public class MesurementDBHelper {
 
     private int lCalfSize;
     private int rCalfSize;
+
+
+    @Override
+    public int compareTo(MesurementDBHelper mho) {
+//        return this.getDateOfMesurement().compareTo(mho.getDateOfMesurement());
+        return mho.getDateOfMesurement().compareTo(this.getDateOfMesurement());
+    }
 
     public MesurementDBHelper() {
 
